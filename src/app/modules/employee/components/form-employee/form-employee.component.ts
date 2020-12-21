@@ -1,7 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Employees } from '../../models/employee';
 
 @Component({
   selector: 'app-form-employee',
@@ -10,12 +10,26 @@ import { Employees } from '../../models/employee';
 })
 export class FormEmployeeComponent implements OnInit {
   form: FormGroup;
+  showAddNewButton: boolean = true;
+  maxDate: any = new Date();
+  groups: Array<any> = [
+    { label: 'Operations', value: 'Operations'},
+    { label: 'Technology', value: 'Technology'},
+    { label: 'Finance', value: 'Finance'},
+    { label: 'Sales', value: 'Sales'},
+    { label: 'Warehouse', value: 'Warehouse'},
+    { label: 'Communications', value: 'Communications'},
+    { label: 'Research', value: 'Research'},
+    { label: 'Account', value: 'Account'},
+    { label: 'Response', value: 'Response'},
+    { label: 'Markets', value: 'Markets'},
+  ]
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private employees: Employees
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -34,12 +48,24 @@ export class FormEmployeeComponent implements OnInit {
       group: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
     });
-    const data = this.employees.selectedEmployee;
+    const { data } = history.state;
     if(data) {
+      this.showAddNewButton = false
       this.form.addControl('id', new FormControl())
       this.form.setValue(data);
       this.form.disable();
     }
+  }
+
+  onSubmit() {
+    if(this.form.invalid) {
+      return
+    }
+    this.location.back();
+  }
+
+  back() {
+    this.location.back();
   }
 
 }

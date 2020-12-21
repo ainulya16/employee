@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { environment } from 'src/environments/environment';
-import { Employee, Employees } from './models/employee';
+import { Employee } from './interfaces/employee';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
@@ -30,22 +30,17 @@ export class EmployeeComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router,
     private formBuilder: FormBuilder,
-    private employees: Employees
   ) {}
 
   ngOnInit(): void {
-    if(!this.dataSource) {
-      this.loadData();
-    }
+    this.loadData();
     this.buildForm();
-    this.dataSource = this.employees.dataSources;
   }
 
   loadData() {
     this.http.get(environment.url+'/users')
     .subscribe((response:any)=>{
       this.data = response;
-      this.employees.dataSources = new MatTableDataSource(response);
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -103,7 +98,6 @@ export class EmployeeComponent implements OnInit {
   }
 
   detail(data: Employee) {
-    this.employees.selectedEmployee = data;
     this.router.navigate(['employee/detail/', data.id], { state: {data}});
   }
 

@@ -3,50 +3,61 @@
     <div class="line">
       <mat-icon>account_circle</mat-icon>
     </div>
-    <form [formGroup]="form" class="form">
+    <div class="form">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-      <h2 class="title">Employee</h2>
-      
-      <mat-form-field>
-        <mat-label>First Name</mat-label>
-        <input matInput formControlName="firstName" placeholder="John Doe" #input>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Last Name</mat-label>
-        <input matInput formControlName="lastName" placeholder="John Doe" #input>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Username</mat-label>
-        <input matInput formControlName="username" placeholder="Operations" #input>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Birth Date</mat-label>
-        <input matInput formControlName="birthDate" placeholder="Operations" #input>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" placeholder="Operations" #input>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Group</mat-label>
-        <input matInput formControlName="group" placeholder="Operations" #input>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Status</mat-label>
-        <input matInput formControlName="status" placeholder="Operations" #input>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Basic Salary</mat-label>
-        <input matInput formControlName="basicSalary" placeholder="Operations" #input>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Description</mat-label>
-        <input matInput formControlName="description" placeholder="Operations" #input>
-      </mat-form-field>
-      <button class="submit-button" mat-flat-button>
-        Add New Employee
-      </button>
-    </form>
+        <h2 class="title">Employee</h2>
+
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" placeholder="John" #input>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" placeholder="Doe" #input>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" placeholder="_username" #input>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Birth Date</mat-label>
+          <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="birthDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="mail@gogle.com" #input>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Group</mat-label>
+          <mat-select formControlName="group">
+            <mat-option *ngFor="let group of groups" [value]="group.value">
+              {{group.label}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <input matInput formControlName="status" placeholder="Staff" #input>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Basic Salary</mat-label>
+          <input matInput formControlName="basicSalary" type="number" placeholder="0" #input>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" placeholder="Just describe your self" #input>
+        </mat-form-field>
+        <button *ngIf="showAddNewButton" class="submit-button" mat-flat-button>
+          SAVE
+        </button>
+        <button *ngIf="!showAddNewButton" type="button" class="submit-button" (click)="back()" mat-flat-button>
+          OK
+        </button>
+      </form>
+    </div>
   </div>
 
 </div>

@@ -10,8 +10,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormEmployeeComponent } from './components/form-employee/form-employee.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -28,7 +31,11 @@ import { FormEmployeeComponent } from './components/form-employee/form-employee.
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRippleModule,
+    MatSelectModule,
     ReactiveFormsModule,
-  ]
+  ],
 })
 export class EmployeeModule { }
