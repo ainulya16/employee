@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { environment } from 'src/environments/environment';
-import { Employee } from './models/employee';
+import { Employee, Employees } from './models/employee';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
@@ -29,18 +29,23 @@ export class EmployeeComponent implements OnInit {
     private http: HttpClient,
     private snackBar: MatSnackBar,
     private router: Router,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private employees: Employees
+  ) {}
 
   ngOnInit(): void {
-    this.loadData();
+    if(!this.dataSource) {
+      this.loadData();
+    }
     this.buildForm();
+    this.dataSource = this.employees.dataSources;
   }
 
   loadData() {
     this.http.get(environment.url+'/users')
     .subscribe((response:any)=>{
       this.data = response;
+      this.employees.dataSources = new MatTableDataSource(response);
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -77,7 +82,7 @@ export class EmployeeComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  edit(data) {
+  edit(data: Employee) {
     const message = `${data.firstName}'s data has been updated`
     this.snackBar.open(message, 'dismiss', {
       verticalPosition: 'top',
@@ -85,7 +90,7 @@ export class EmployeeComponent implements OnInit {
     })
   }
 
-  delete(data) {
+  delete(data: Employee) {
     const message = `${data.firstName}'s data has been deleted`
     this.snackBar.open(message, 'dismiss', {
       verticalPosition: 'top',
@@ -95,6 +100,11 @@ export class EmployeeComponent implements OnInit {
 
   add() {
     this.router.navigate(['employee/add']);
+  }
+
+  detail(data: Employee) {
+    this.employees.selectedEmployee = data;
+    this.router.navigate(['employee/detail/', data.id], { state: {data}});
   }
 
 }

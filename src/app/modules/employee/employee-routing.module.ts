@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmployeeComponent } from './employee.component';
-import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
-import { DetailEmployeeComponent } from './components/detail-employee/detail-employee.component';
+import { FormEmployeeComponent } from './components/form-employee/form-employee.component';
 
 const routes: Routes = [
   {
     path: 'add',
-    component: AddEmployeeComponent
+    component: FormEmployeeComponent
   },
   {
     path: 'detail/:id',
-    component: DetailEmployeeComponent
+    component: FormEmployeeComponent
   },
   {
     path: '',

@@ -1,4 +1,8 @@
-export class Employee {
+import { Injectable } from "@angular/core";
+import { MatTableDataSource } from "@angular/material/table";
+
+export interface Employee {
+  id: string;
   username: string;
   firstName: string;
   lastName: string;
@@ -8,4 +12,10 @@ export class Employee {
   status: string;
   group: string;
   description: string;
+}
+
+@Injectable({providedIn: 'root'})
+export class Employees {
+  dataSources: MatTableDataSource<Employee>;
+  selectedEmployee: Employee
 }
