@@ -4,4 +4,10 @@
 @import '~bootstrap/scss/bootstrap'
 @import '~@angular/material/prebuilt-themes/indigo-pink.css'
 
-$blue: '#ffffff'
+
+.mat-paginator-container
+  @media (max-width: 576px)
+    align-items: center
+    justify-content: flex-start !important
+    padding: 0px
+    width: 100%

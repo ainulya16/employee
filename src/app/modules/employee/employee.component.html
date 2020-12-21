@@ -1,26 +1,17 @@
-<div class="container">
+<div class="">
   <h2 class="title text-center">Employee List</h2>
-  <div class="mat-elevation-z8">
+  <div class="mat-elevation-z8 content">
     <div class="filtered-form pl-4 pr-3 pt-2">
       <form [formGroup]="form">
-      <table cellspacing="0">
-        <tr>
-          <td class="pr-2">
-            <mat-form-field>
+            <mat-form-field class="pr-md-2">
               <mat-label>Name</mat-label>
               <input matInput formControlName="firstName" (keyup)="applyFilterName($event)"  placeholder="John Doe" #input>
             </mat-form-field>
-          </td>
-          <td>
             <mat-form-field>
               <mat-label>Group</mat-label>
               <input matInput formControlName="group" (keyup)="applyFilterGroup($event)" placeholder="Operations" #input>
               <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
-          </td>
-
-        </tr>
-      </table>
       </form>
     </div>
 

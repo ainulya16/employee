@@ -22,13 +22,20 @@
     height: auto
 
 .fab-container
-  position: absolute
+  position: fixed
   bottom: 50px
   right: 50px
+  @media (max-width: 576px)
+    bottom: 10px
+    right: 10px
 
 .table-custom
   height: 500px
   overflow-x: scroll
+
+.content
+  @media (min-width: 768px)
+    margin: 40px
 
 .mat-table
   width: 100%
@@ -36,3 +43,6 @@
 .mat-row
   cursor: pointer
 
+.filtered-form
+  display: flex
+  flex-wrap: wrap
