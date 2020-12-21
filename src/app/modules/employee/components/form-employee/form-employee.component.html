@@ -1,45 +1,52 @@
-<div class="container">
-  <h2 class="title text-center">Employee Detail</h2>
+<div class="layout">
+  <div class="form-container mat-elevation-z8">
+    <div class="line">
+      <mat-icon>account_circle</mat-icon>
+    </div>
+    <form [formGroup]="form" class="form">
 
-  <div class="form-container mat-elevation-z8 m-auto">
-      <form [formGroup]="form" class="">
-        <mat-form-field>
-          <mat-label>First Name</mat-label>
-          <input matInput formControlName="firstName" placeholder="John Doe" #input>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Last Name</mat-label>
-          <input matInput formControlName="lastName" placeholder="John Doe" #input>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Username</mat-label>
-          <input matInput formControlName="username" placeholder="Operations" #input>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Birth Date</mat-label>
-          <input matInput formControlName="birthDate" placeholder="Operations" #input>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" placeholder="Operations" #input>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Group</mat-label>
-          <input matInput formControlName="group" placeholder="Operations" #input>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Status</mat-label>
-          <input matInput formControlName="status" placeholder="Operations" #input>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Basic Salary</mat-label>
-          <input matInput formControlName="basicSalary" placeholder="Operations" #input>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Description</mat-label>
-          <input matInput formControlName="description" placeholder="Operations" #input>
-        </mat-form-field>
-      </form>
+      <h2 class="title">Employee</h2>
+      
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" placeholder="John Doe" #input>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" placeholder="John Doe" #input>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" placeholder="Operations" #input>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Birth Date</mat-label>
+        <input matInput formControlName="birthDate" placeholder="Operations" #input>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Operations" #input>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Group</mat-label>
+        <input matInput formControlName="group" placeholder="Operations" #input>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <input matInput formControlName="status" placeholder="Operations" #input>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Basic Salary</mat-label>
+        <input matInput formControlName="basicSalary" placeholder="Operations" #input>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" placeholder="Operations" #input>
+      </mat-form-field>
+      <button class="submit-button" mat-flat-button>
+        Add New Employee
+      </button>
+    </form>
   </div>
 
 </div>
