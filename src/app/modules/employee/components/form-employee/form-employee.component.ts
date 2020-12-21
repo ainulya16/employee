@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { CurrencyPipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,7 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-form-employee',
   templateUrl: './form-employee.component.html',
-  styleUrls: ['./form-employee.component.sass']
+  styleUrls: ['./form-employee.component.sass'],
+  providers: [
+    CurrencyPipe
+  ]
 })
 export class FormEmployeeComponent implements OnInit {
   form: FormGroup;
@@ -24,12 +27,12 @@ export class FormEmployeeComponent implements OnInit {
     { label: 'Response', value: 'Response'},
     { label: 'Markets', value: 'Markets'},
   ]
+  data: any;
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private location: Location
+    private location: Location,
+    private currencyPipe: CurrencyPipe
   ) { }
 
   ngOnInit(): void {
@@ -50,9 +53,11 @@ export class FormEmployeeComponent implements OnInit {
     });
     const { data } = history.state;
     if(data) {
+      this.data = data;
       this.showAddNewButton = false
       this.form.addControl('id', new FormControl())
       this.form.setValue(data);
+      this.form.get('basicSalary').setValue(this.currencyPipe.transform(data.basicSalary, 'Rp.'))
       this.form.disable();
     }
   }

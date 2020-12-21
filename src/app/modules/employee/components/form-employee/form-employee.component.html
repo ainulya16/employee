@@ -44,7 +44,8 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Basic Salary</mat-label>
-          <input matInput formControlName="basicSalary" type="number" placeholder="0" #input>
+          <input matInput *ngIf="data.basicSalary" formControlName="basicSalary" placeholder="0" #input>
+          <input matInput *ngIf="!data.basicSalary" formControlName="basicSalary" type="number" placeholder="0" #input>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Description</mat-label>
