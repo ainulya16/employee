@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -22,6 +23,7 @@ export class EmployeeComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +40,22 @@ export class EmployeeComponent implements OnInit {
       }, e => {
         console.log(e);
       })
+  }
+
+  edit(data) {
+    const message = `${data.firstName}'s data has been updated`
+    this.snackBar.open(message, 'dismiss', {
+      verticalPosition: 'top',
+      horizontalPosition: 'end'
+    })
+  }
+
+  delete(data) {
+    const message = `${data.firstName}'s data has been deleted`
+    this.snackBar.open(message, 'dismiss', {
+      verticalPosition: 'top',
+      horizontalPosition: 'end'
+    })
   }
 
 }
