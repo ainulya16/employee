@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  loginBase: "https://api.jsonapi.co/rest/v1/user/login",
+  url: "https://5e4a794b6eafb7001488c4f1.mockapi.io/test"
 };
 
 /*
