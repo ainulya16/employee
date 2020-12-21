@@ -1,47 +1,81 @@
-<div class="container-fluid">
+<div class="container">
   <h2 class="title text-center">Employee List</h2>
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <div class="filtered-form pl-4 pr-3 pt-2">
+      <form [formGroup]="form">
+      <table cellspacing="0">
+        <tr>
+          <td class="pr-2">
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="firstName" (keyup)="applyFilterName($event)"  placeholder="John Doe" #input>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <mat-label>Group</mat-label>
+              <input matInput formControlName="group" (keyup)="applyFilterGroup($event)" placeholder="Operations" #input>
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </td>
 
-    <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-      <td mat-cell *matCellDef="let item"> {{item.firstName}} {{item.lastName}}</td>
-    </ng-container>
-    
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-      <td mat-cell *matCellDef="let item"> {{item.email}} </td>
-    </ng-container>
+        </tr>
+      </table>
+      </form>
+    </div>
 
-    <ng-container matColumnDef="group">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Group </th>
-      <td mat-cell *matCellDef="let item"> {{item.group}} </td>
-    </ng-container>
 
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-      <td mat-cell *matCellDef="let item"> {{item.status}} </td>
-    </ng-container>
 
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef class="text-center"> Action </th>
-      <td mat-cell *matCellDef="let item" class="text-center">
-        
-        <button mat-flat-button class="warning mr-1" aria-label="" (click)="edit(item)">
-          <mat-icon>edit</mat-icon>Edit
-        </button>
-        <button mat-flat-button class="danger" aria-label="" (click)="delete(item)">
-          <mat-icon>delete</mat-icon>Delete
-        </button>
+    <div class="table-custom">
+      <table mat-table [dataSource]="dataSource" matSort>
 
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let item"> {{item.firstName}} {{item.lastName}}</td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let item"> {{item.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="group">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Group </th>
+          <td mat-cell *matCellDef="let item"> {{item.group}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let item"> {{item.status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> Action </th>
+          <td mat-cell *matCellDef="let item" class="text-center">
+
+            <button mat-flat-button class="warning mr-1" (click)="edit(item)">
+              <mat-icon>edit</mat-icon>Edit
+            </button>
+            <button mat-flat-button class="danger" (click)="delete(item)">
+              <mat-icon>delete</mat-icon>Delete
+            </button>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+    </div>
     <mat-paginator [pageSizeOptions]="[10, 20, 30]">
     </mat-paginator>
+  </div>
+
+  <div class="fab-container">
+    <button mat-fab color="primary" (click)="add()">
+      <mat-icon>add</mat-icon>
+    </button>
   </div>
 
 
