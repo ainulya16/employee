@@ -2,24 +2,25 @@
   font-size: 22px
   padding-top: 20px
 
-  
-.warning
-  background-color: var(--warning)
+.warning, .danger
   color: #ffffff
   mat-icon
     font-size: 16px
     margin-right: 5px
     width: auto
     height: auto
+  @media (max-width: 576px)
+    height: 30px
+    line-height: 30px
+    padding: 0 8px
+    margin: 5px
+    font-size:12px
+
+.warning
+  background-color: var(--warning)
   
 .danger
   background-color: var(--danger)
-  color: #ffffff
-  mat-icon
-    font-size: 16px
-    margin-right: 5px
-    width: auto
-    height: auto
 
 .fab-container
   position: fixed

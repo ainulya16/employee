@@ -5,6 +5,8 @@
   display: flex
   justify-content: center
   align-items: center
+  @media (max-width: 576px)
+    align-items: flex-start
 
 .form-container
   border-radius: 10px
@@ -15,6 +17,8 @@
   text-align: center
   overflow: hidden
   max-width: 950px
+  @media (max-width: 950px)
+    margin: 20px
 
 .line
   height: 500px
@@ -27,10 +31,17 @@
     font-size: 80px
     margin-top: 30px
     color: white
+  @media (max-width: 576px)
+    display: none
 
 .form
   width: 100%
   text-align: left
+  @media (max-width: 950px)
+    overflow: scroll
+  @media (max-width: 576px)
+    text-align: center
+
 
 .title
   padding-left: 40px
@@ -43,6 +54,10 @@
   margin-left: 40px
   margin-top: 10px
   margin-bottom: 10px
+  @media (max-width: 576px)
+    margin-left: 0px
+  @media (max-width: 360px)
+    width: 200px
 
 .submit-button
   background-color: var(--primary)
