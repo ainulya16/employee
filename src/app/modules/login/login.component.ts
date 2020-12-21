@@ -28,10 +28,15 @@ export class LoginComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
-    this.submitted = true;
-    if (this.form.invalid) {
-      return;
-    }
+    // this.submitted = true;
+    // if (this.form.invalid) {
+    //   return;
+    // }
+
+    console.log(this.form.invalid)
+    localStorage.setItem('token', 'token');
+    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.router.navigateByUrl(returnUrl);
 
   }
 
